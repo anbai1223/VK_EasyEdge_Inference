@@ -1,0 +1,15 @@
+该目录的文件：
+
+vkbg.h : 用std::string变量储存背景图的base64编码，以及声明了函数vk_background()
+
+vkbg.cpp : 定义函数vk_background() -> 读取vkbg.h头文件里的背景图base64编码，将其解码并转化成cv::Mat类型图片返回
+
+base64.h : 第三方头文件，这里主要用在vkbg.cpp中对base64解码
+
+libvkbg.so : 是将vkbg.cpp编译成的动态链接库，使用的opencv的头文件的系统中/usr/include/opencv4路径下的
+
+libvkbg_opencv3.4.so:也是将vkbg.cpp编译成的动态链接库，但是是在通用小型设备版本的SDK（ARM）中重新编译的，使用的opencv的头文件是SDK内./cpp/thirdparty/opencv/include路径下的（目前没使用到）
+
+test.base : 里面存放着背景图的base64码
+
+压缩包是背景图的压缩包
