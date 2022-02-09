@@ -1,0 +1,7 @@
+[default]
+yellow
+red
+orange
+green
+brown
+blue
