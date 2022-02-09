@@ -1,0 +1,26 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 177173,
+  "cs": "18C9-522E-B031-D6C1-0531-C4B6-1D0E-F655-0235",
+  "extra": {
+    "fluid": {
+      "optType": "nb"
+    }
+  },
+  "modelEnc": 1000,
+  "modelId": 56980,
+  "modelName": "农作物分类V1",
+  "modelType": 1,
+  "nType": 0,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115991,
+  "sk": null,
+  "soc": "arm",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}

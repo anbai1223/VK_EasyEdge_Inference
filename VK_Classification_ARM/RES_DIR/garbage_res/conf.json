@@ -1,0 +1,26 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 176261,
+  "cs": "CE1C-61EB-F805-DF45-344A-0F72-51C3-936A-0265",
+  "extra": {
+    "fluid": {
+      "optType": "nb"
+    }
+  },
+  "modelEnc": 1000,
+  "modelId": 56891,
+  "modelName": "垃圾分类testV1",
+  "modelType": 1,
+  "nType": 0,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115859,
+  "sk": null,
+  "soc": "arm",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}
