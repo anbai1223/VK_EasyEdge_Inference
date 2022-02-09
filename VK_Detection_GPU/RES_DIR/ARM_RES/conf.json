@@ -1,0 +1,27 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 174124,
+  "cs": "74D3-5AAA-95D5-6AB7-ECD8-9302-2460-37AF-025E",
+  "extra": {
+    "fluid": {
+      "optType": "nb"
+    },
+    "thresholdRec": 0.29999999999999999
+  },
+  "modelEnc": 1000,
+  "modelId": 56608,
+  "modelName": "山火烟雾检测V1",
+  "modelType": 2,
+  "nType": 103,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115503,
+  "sk": null,
+  "soc": "arm",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}

@@ -1,0 +1,25 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 175272,
+  "cs": "DF0A-8B30-D309-0AE7-28CE-1F8C-CEF9-67DA-02AA",
+  "extra": {
+    "parser_type": 0,
+    "thresholdRec": 0.5
+  },
+  "modelEnc": 1000,
+  "modelId": 56505,
+  "modelName": "AI数豆子模型V1",
+  "modelType": 2,
+  "nType": 103,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115357,
+  "sk": null,
+  "soc": "jetson",
+  "thresholdRec": 0.5,
+  "version": 1
+}

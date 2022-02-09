@@ -1,0 +1,26 @@
+{
+    "img_mean": [
+        123.675, 
+        116.28, 
+        103.53
+    ], 
+    "channelOrder": "CHW", 
+    "outputNodeName": [
+        "conv2d_101_conv2d_20_tmp_0", 
+        "conv2d_126_conv2d_28_tmp_0", 
+        "conv2d_151_conv2d_36_tmp_0"
+    ], 
+    "resize_mode": "cv2.INTER_LINEAR", 
+    "rescale_mode": "keep_size", 
+    "scale": [
+        0.0171248, 
+        0.017507, 
+        0.0174292
+    ], 
+    "colorFormat": "RGB", 
+    "inputNodeName": "data", 
+    "resize": [
+        608, 
+        608
+    ]
+}

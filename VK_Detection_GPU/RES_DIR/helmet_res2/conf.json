@@ -1,0 +1,25 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 175451,
+  "cs": "D9C9-E65F-5B04-45FD-52A0-A4B3-8150-3F51-02CB",
+  "extra": {
+    "parser_type": 0,
+    "thresholdRec": 0.29999999999999999
+  },
+  "modelEnc": 1000,
+  "modelId": 56606,
+  "modelName": "安全帽检测模型V2",
+  "modelType": 2,
+  "nType": 103,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115500,
+  "sk": null,
+  "soc": "jetson",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}

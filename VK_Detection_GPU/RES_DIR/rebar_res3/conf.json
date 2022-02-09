@@ -1,0 +1,64 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 174431,
+  "cs": "84F6-9B90-A21B-393A-2C38-3570-A1DE-D02F-028A",
+  "extra": {
+    "detection": {
+      "anchors": {
+        "conv2d_101_conv2d_20_tmp_0": [
+          116,
+          90,
+          156,
+          198,
+          373,
+          326
+        ],
+        "conv2d_126_conv2d_28_tmp_0": [
+          30,
+          61,
+          62,
+          45,
+          59,
+          119
+        ],
+        "conv2d_151_conv2d_36_tmp_0": [
+          10,
+          13,
+          16,
+          30,
+          33,
+          23
+        ]
+      },
+      "anchors_scale": {
+        "conv2d_101_conv2d_20_tmp_0": 1,
+        "conv2d_126_conv2d_28_tmp_0": 1,
+        "conv2d_151_conv2d_36_tmp_0": 1
+      },
+      "box_score_threshold": 0.0099999997764825821,
+      "keep_top_k": 1000,
+      "nms_nms_threshold": 0.44999998807907104,
+      "nms_nms_top_k": 1000,
+      "nms_normalized": false,
+      "obj_score_threshold": 0.0099999997764825821
+    },
+    "parser_type": 0,
+    "thresholdRec": 0
+  },
+  "modelEnc": 1000,
+  "modelId": 56686,
+  "modelName": "钢筋数量检测V3",
+  "modelType": 2,
+  "nType": 101,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115606,
+  "sk": null,
+  "soc": "jetson",
+  "thresholdRec": 0,
+  "version": 1
+}

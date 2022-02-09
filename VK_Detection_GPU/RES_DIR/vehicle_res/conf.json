@@ -1,0 +1,24 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 175908,
+  "cs": "1089-9343-0D87-4E0C-9CEB-16CD-9C26-5C38-0267",
+  "extra": {
+    "parser_type": 0
+  },
+  "modelEnc": 1000,
+  "modelId": 56734,
+  "modelName": "车辆分类模型V2",
+  "modelType": 1,
+  "nType": 0,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115662,
+  "sk": null,
+  "soc": "jetson",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}
