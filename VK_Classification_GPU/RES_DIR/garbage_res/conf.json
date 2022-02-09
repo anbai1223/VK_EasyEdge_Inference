@@ -1,0 +1,24 @@
+{
+  "ak": null,
+  "apiUrl": null,
+  "authExpire": 0,
+  "authModelId": "",
+  "authType": "common",
+  "bizModelId": 176295,
+  "cs": "B4DB-1642-D4BD-7E73-272A-3DD7-2D19-E825-02CF",
+  "extra": {
+    "parser_type": 0
+  },
+  "modelEnc": 1000,
+  "modelId": 56861,
+  "modelName": "垃圾分类模型V1",
+  "modelType": 1,
+  "nType": 0,
+  "platform": "linux",
+  "product": "EasyDL",
+  "releaseId": 115826,
+  "sk": null,
+  "soc": "jetson",
+  "thresholdRec": 0.29999999999999999,
+  "version": 1
+}
