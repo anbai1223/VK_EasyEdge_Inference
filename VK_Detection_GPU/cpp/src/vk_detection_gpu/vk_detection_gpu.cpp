@@ -29,7 +29,8 @@ using namespace easyedge;
 #include <time.h>
 #include <string>
 #include "vkbg.h"
-
+#include <fstream>
+#include <vector>
 
 std::atomic<bool> quit(false);
 
@@ -37,6 +38,28 @@ void signal_handler(int) {
     quit.store(true);
 }
 
+struct Result_label {
+    std::string label;
+    int count;
+};
+
+std::vector<Result_label> get_label_vector(std::string label_path){
+    std::ifstream label_file;
+    label_file.open(label_path);
+    std::vector<Result_label> label_vector;
+    std::string s;
+    while (std::getline(label_file, s)) {
+        if (s == "[default]"){
+            continue;
+        }
+        Result_label result_label;
+        result_label.label = s;
+        result_label.count = 0;
+        label_vector.push_back(result_label);
+    }
+    label_file.close();
+    return label_vector;
+}
 
 
 int main(int argc, char *argv[]) {
@@ -44,25 +67,48 @@ int main(int argc, char *argv[]) {
     参数1：RES路径
     参数2：video_type(视频文件：1，csi摄像头：2，usb摄像头：3)
     参数3：video_src(视频文件路径或摄像头设备号)
-    参数4（可选）：serial_num(如果设置为空，SDK会自动寻找本地已经激活过的license)
+    参数4：confidence(置信度0~1，当不需要填参数5序列号时也可不填置信度，默认为0.0)
+    参数5（可选）：serial_num(如果设置为空，SDK会自动寻找本地已经激活过的license)
     */
     if (argc < 4) {
-        std::cerr << "Usage: ./vk_detection_gpu {res_dir} {video_type} {video_src} {serial_num}" << std::endl
+        std::cerr << "Usage: ./vk_detection_gpu {res_dir} {video_type} {video_src} {confidence} {serial_num}" << std::endl
                   << "       {res_dir}    : RES directory" << std::endl
                   << "       {video_type} : Video file->1, CSI camera->2, USB camera->3" << std::endl
                   << "       {video_src}  : Video file path or camera device id" << std::endl
+                  << "       {confidence} : is optional if you want to change confidence level,but the confidence level need to be between 0 and 1(default 0)" << std::endl
                   << "       {serial_num} : is optional if this device has been activated" << std::endl;
         exit(-1);
     }
     std::string res_dir = argv[1];
     int video_type = std::atoi(argv[2]);
     std::string video_src = argv[3];
+    float confidence = 0.0;   //置信度参数
     std::string serial_num = "";
 
     if (argc >= 5) {
-        serial_num = argv[4];
+        confidence = std::atof(argv[4]);
+        if (confidence < 0 || confidence > 1) {
+            std::cerr << "The confidence level needs to be between 0 and 1" << std::endl;
+            exit(-1);
+        }
+        
     }
-  
+    if (argc >= 6) {
+        serial_num = argv[5];
+    }
+    std::cout << "confidence: " << confidence << std::endl;
+
+    // 获取label_list.txt路径
+    std::stringstream label_path;
+    if (res_dir[res_dir.length()-1] == '/'){
+        label_path << res_dir << "label_list.txt";
+    }else {
+        label_path << res_dir << "/label_list.txt";
+    }
+    
+    //获取所有label
+    std::vector<Result_label> label_vector = get_label_vector(label_path.str());
+    
     cv::Mat background;
     cv::Mat background_temp;
     background = vk_init();
@@ -169,25 +215,41 @@ int main(int argc, char *argv[]) {
         cv::resize(frame,frame,cv::Size(1080,720));
         imageROI = background_temp(cv::Rect(670, 207, frame.cols, frame.rows));
         
+        // 将label数量清零
+        for (int i = 0; i< label_vector.size(); i++) {
+          label_vector[i].count = 0;
+        }
+        
         
         // 显示识别结果
         if (!results.empty()){
           for (int i = 0; i < results.size(); i++){
-            if ( i > 6) { //最多显示7条结果
-              break;
+
+            if (results[i].prob >= confidence) {
+                for (int j = 0; j < label_vector.size(); j++) {
+                    if (label_vector[j].label == results[i].label) {
+                        label_vector[j].count++;
+                        break;
+                    }
+                }
             }
           
-            //置信度保留两位小数
-            std::stringstream prob;
-            prob << std::fixed << std::setprecision(2) << results[i].prob; 
+          }
+          
+          // 显示识别到的每个label的总数量
+          for (int k = 0; k < label_vector.size(); k++) {
+            if ( k > 6) { //最多显示7条结果
+              break;
+            }
             
-            cv::putText(background_temp,std::to_string(i+1) + "  " + results[i].label, cv::Point(150,300 + i *95),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255,245,0), 2, 1);
-            cv::putText(background_temp,"probability: " + prob.str(), cv::Point(200,330 + i *95),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(0,255,255), 2, 1);
+            cv::putText(background_temp,std::to_string(k+1) + "  " + label_vector[k].label, cv::Point(150,300 + k * 95),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255,245,0), 2, 1);
+            cv::putText(background_temp,"sum: " + std::to_string(label_vector[k].count), cv::Point(200,330 + k * 95), cv:: FONT_HERSHEY_COMPLEX, 1, cv::Scalar(0,255,255), 2, 1);
           }
         }
         else {
             cv::putText(background_temp, "empty result", cv::Point(200,300),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255,255,255), 2, 1);
         }
+        
         
         
         // 获取系统当前时间

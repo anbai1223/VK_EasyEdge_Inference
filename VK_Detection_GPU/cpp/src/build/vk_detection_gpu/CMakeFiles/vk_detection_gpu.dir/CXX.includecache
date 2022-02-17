@@ -159,6 +159,10 @@ string
 -
 vkbg.h
 /home/vkrobot/VK_Detection_GPU/cpp/src/vk_detection_gpu/vkbg.h
+fstream
+-
+vector
+-
 
 /usr/include/opencv4/opencv2/calib3d.hpp
 opencv2/core.hpp
