@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
     
 
     std::vector<EdgeResultData> results;
-    EdgeResultData max_prob_results;  //存放最大置信度的结果
+    
     while (true) {
         background.copyTo(background_temp);
         
@@ -163,21 +163,18 @@ int main(int argc, char *argv[]) {
         
         // 显示识别结果
         if (!results.empty()){
-          max_prob_results.prob = 0;
+
           
           for (int i = 0; i < results.size(); i++){
-            // 找到置信度最大的结果
-            if (results[i].prob >= max_prob_results.prob){
-              max_prob_results = results[i];
-            }
+            //置信度保留两位小数
+            std::stringstream prob;
+            prob << std::fixed << std::setprecision(2) << results[i].prob; 
+          
+            cv::putText(background_temp,std::to_string(i+1) + "  " + results[i].label, cv::Point(150,300 + i *95),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255,245,0), 2, 1);
+            cv::putText(background_temp,"probability: " + prob.str(), cv::Point(200,330 + i *95),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(0,255,255), 2, 1);
                       
           }
-          //置信度保留两位小数
-          std::stringstream prob;
-          prob << std::fixed << std::setprecision(2) << max_prob_results.prob; 
           
-          cv::putText(background_temp,max_prob_results.label, cv::Point(200,300),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255,245,0), 2, 1);
-          cv::putText(background_temp,"probability: " + prob.str(), cv::Point(200,330),cv::FONT_HERSHEY_COMPLEX, 1, cv::Scalar(0,255,255), 2, 1);
           
         }
         else {
